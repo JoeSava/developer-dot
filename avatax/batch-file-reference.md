@@ -29,7 +29,9 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
     <li> [ExemptCertImport](Link Template for Download) - Needs brief explanation
     <li> [CompanyLocationImport](Link Template for Download) - Needs brief explanation
     <li> [TaxRuleImport](Link Template for Download)
-    <li> [TransactionImport](developer-dot/_batchtemplates/ImportTransactionsTemplate.csv)- Needs brief explanation
+    <li> <a href="developer-dot/_batchtemplates/ImportTransactionsTemplate.csv" >TransactionImport</a>
+
+     Needs brief explanation
     <li> [SstpTestDeckImport]("Link Template for Download") (SST Enabled Accounts Only)- Needs brief explanation
     <li> [UPCBulkImport]("Link Template for Download")- Needs brief explanation
     <li> [UPCValidationImport]("Link Template for Download")- Needs brief explanation
