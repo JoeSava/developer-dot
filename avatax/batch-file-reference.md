@@ -14,7 +14,7 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 <h3>Batch File Limitations</h3>
 
 <ul class="normal">
-    <li>A batch file may have up to 100,000 lines.  Any batch file with more than 100,000 lines may be rejected.</li>
+    <li>A batch file may have up to 100,000 filled data lines.  Any batch file with more than 100,000 lines may be rejected.</li>
     <li>Batch files must be in XLS, XLSX, or CSV formats.</li>
     <li>When using Excel, please be careful about scientific-notation conversion.  Excel may choose to convert some large numbers to scientific notation; this is especially problematic for UPC codes which often look like large numbers.  Please be careful when using Excel and ensure that the final file does not have conversion problems.</li>
     <li>Batch files are processed by AvaTax in the order they were received.</li>
@@ -23,26 +23,32 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 
 <h3>Batch File Types</h3>
 <i> Batch Template Download Links (Most may also be found in the Admin Console):</i>
-<ul class"=normal">
-    <li> [ItemReport](Link Template for Download)
-      - Needs brief explanation
-    <li> [ExemptCertImport](Link Template for Download) - Needs brief explanation
-    <li> [CompanyLocationImport](Link Template for Download) - Needs brief explanation
-    <li> [TaxRuleImport](Link Template for Download)
-    <li> <a href="developer-dot/_batchtemplates/ImportTransactionsTemplate.csv" >TransactionImport</a>
-
-     Needs brief explanation
-    <li> [SstpTestDeckImport]("Link Template for Download") (SST Enabled Accounts Only)- Needs brief explanation
-    <li> [UPCBulkImport]("Link Template for Download")- Needs brief explanation
-    <li> [UPCValidationImport]("Link Template for Download")- Needs brief explanation
+<ul class="normal">
+    <li> ItemImport - refers to a batch type used for loading multiple items at a time</li>
+    <li> ExemptCertImport - refers to a batch type used for loading multiple exemption certificates at a time</li>
+    <li>CompanyLocationImport - refers to a batch type used for loading mutliple company locations at a time</li>
+    <li> TaxRuleImport - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
+    <li> ImportTransaction - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
+    <li> SstpTestDeckImport - refers to a batch type used for loading multiple SST test decks for a company at a time.</li>
+    <li> UPCBulkImport - refers to a batch type used to load multiple UPCs mapped to their respective TaxCodes for a compnay in the Admin Console</li>
+    <li> UPCValidationImport - refers to a batch type that loads multiple UPCs to check which codes are supported or unsupported by Avalara.</li>
 </ul>
 
 <h3>Sample File</h3>
 
-<Took out some of what Ted had in there because in this design template would be linked here>
+
+To get started quickly, just download a sample file and start editing it yourself!  Here's how to download a sample file:
+
+<ul class="normal">
+    <li>Log on to <a href="">Avalara's Admin Console</a></li>
+    <li>Click on <b>Tools</b></li>
+    <li>Click on <b>Import Data</b></li>
+    <li>In the <b>Type</b> drop down box, select <b>Transaction Import</b></li>
+    <li>Click <b>Download</b> to receive a sample transaction file</li>
+</ul>
 
 <h3>List of Required Fields</h3>
-In the following example the [transaction import template](Link Template)  
+
 The following fields correspond to the same fields in the CreateTransactionModel and are supported in batch files.  You must fill in, at a minimum, these fields:
 
 <table class="styled-table">
