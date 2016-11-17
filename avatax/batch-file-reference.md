@@ -22,7 +22,7 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 
 
 <h3>Batch File Types</h3>
-<i> Batch Template Download Links (Most may also be found in the Admin Console):</i>
+<i> Supported in REST V2 </i>
 <ul class="normal">
     <li> ItemImport - refers to a batch type used for loading multiple items at a time</li>
     <li> ExemptCertImport - refers to a batch type used for loading multiple exemption certificates at a time</li>
