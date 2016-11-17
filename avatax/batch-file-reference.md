@@ -14,13 +14,28 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 <h3>Batch File Limitations</h3>
 
 <ul class="normal">
-    <li>A batch file may have up to 100,000 lines.  Any batch file with more than 100,000 lines may be rejected.</li>
+    <li>A batch file may have up to 100,000 filled data lines.  Any batch file with more than 100,000 lines may be rejected.</li>
     <li>Batch files must be in XLS, XLSX, or CSV formats.</li>
     <li>When using Excel, please be careful about scientific-notation conversion.  Excel may choose to convert some large numbers to scientific notation; this is especially problematic for UPC codes which often look like large numbers.  Please be careful when using Excel and ensure that the final file does not have conversion problems.</li>
     <li>Batch files are processed by AvaTax in the order they were received.</li>
 </ul>
 
+
+<h3>Batch File Types</h3>
+<i> Supported in REST V2 </i>
+<ul class="normal">
+    <li> ItemImport - refers to a batch type used for loading multiple items at a time</li>
+    <li> ExemptCertImport - refers to a batch type used for loading multiple exemption certificates at a time</li>
+    <li>CompanyLocationImport - refers to a batch type used for loading mutliple company locations at a time</li>
+    <li> TaxRuleImport - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
+    <li> ImportTransaction - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
+    <li> SstpTestDeckImport - refers to a batch type used for loading multiple SST test decks for a company at a time.</li>
+    <li> UPCBulkImport - refers to a batch type used to load multiple UPCs mapped to their respective TaxCodes for a compnay in the Admin Console</li>
+    <li> UPCValidationImport - refers to a batch type that loads multiple UPCs to check which codes are supported or unsupported by Avalara.</li>
+</ul>
+
 <h3>Sample File</h3>
+
 
 To get started quickly, just download a sample file and start editing it yourself!  Here's how to download a sample file:
 
@@ -252,7 +267,7 @@ The following fields correspond to the same fields in the CreateTransactionModel
     <tr>
         <td>ExemptionNo</td>
         <td>Text, up to 25 characters</td>
-        <td>The exemption certificate number, if there is one. Putting a value in ExemptionNo generates a sales-tax exemption for the document line item to which the exemption certificate is applied. 
+        <td>The exemption certificate number, if there is one. Putting a value in ExemptionNo generates a sales-tax exemption for the document line item to which the exemption certificate is applied.
         ExemptionNo is required if:
         -Exemption certificate options for the account are set to required.
         -You're a seller in a Simplified Sales Tax Program (SSTP) state and thus are required to use an exemption certificate management system to generate exemption certificates in SSTP states.</td>
@@ -365,4 +380,3 @@ The following fields correspond to the same fields in the CreateTransactionModel
         <td></td>
     </tr>
 <table>
-
