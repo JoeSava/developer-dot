@@ -24,11 +24,12 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 <h3>Batch File Types</h3>
 <i> Supported in REST V2 </i>
 <ul class="normal">
-    <li> ItemImport - refers to a batch type used for loading multiple items at a time</li>
+    <li> <a
+    href="https://raw.githubusercontent.com/JoeSava/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a></li>
     <li> ExemptCertImport - refers to a batch type used for loading multiple exemption certificates at a time</li>
     <li>CompanyLocationImport - refers to a batch type used for loading mutliple company locations at a time</li>
     <li> TaxRuleImport - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
-    <li> ImportTransaction - refers to a batch type used for loading multiple custom tax rules to a company at a time</li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a></li>
     <li> SstpTestDeckImport - refers to a batch type used for loading multiple SST test decks for a company at a time.</li>
     <li> UPCBulkImport - refers to a batch type used to load multiple UPCs mapped to their respective TaxCodes for a compnay in the Admin Console</li>
     <li> UPCValidationImport - refers to a batch type that loads multiple UPCs to check which codes are supported or unsupported by Avalara.</li>
