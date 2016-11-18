@@ -9100,7 +9100,7 @@
 					"example": 56789
 				},
 				"type": {
-					"description": "The type of this batch.",
+					"description": "AvaTax supports a varity of batch file types e.g. TransactionImport; a type for loading multiple transactions for your company at one time. For more see AvaTax Use Cases - Batch File Reference",
 					"enum": ["AvaCertUpdate",
 					"AvaCertUpdateAll",
 					"BatchMaintenance",

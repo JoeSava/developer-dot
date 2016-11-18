@@ -22,26 +22,21 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 
 
 <h3>Batch File Types</h3>
-<i> Batch Template Download Links (Most may also be found in the Admin Console):</i>
+<i> Batch Template Download Links (Many of these are also available in the Admin Console):</i>
 <ul class"=normal">
-    <li> [ItemReport](Link Template for Download)
-      - Needs brief explanation
-    <li> [ExemptCertImport](Link Template for Download) - Needs brief explanation
-    <li> [CompanyLocationImport](Link Template for Download) - Needs brief explanation
-    <li> [TaxRuleImport](Link Template for Download)
-    <li> [TransactionImport](developer-dot/_batchtemplates/ImportTransactionsTemplate.csv)- Needs brief explanation
-    <li> [SstpTestDeckImport]("Link Template for Download") (SST Enabled Accounts Only)- Needs brief explanation
-    <li> [UPCBulkImport]("Link Template for Download")- Needs brief explanation
-    <li> [UPCValidationImport]("Link Template for Download")- Needs brief explanation
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportItemsTemplate.csv" download>ItemImport</a> - refers to a batch type used for uploading multiple items and their respective tax codes at once.</li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportCompanyLocationsTemplate.csv" download>CompanyLocationImport</a> - refers to a batch type used to upload multiple company locations at once. </li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportExemptionCertificatesTemplate.csv" download>ExemptCertImport</a> - Needs brief explanation
+    <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportTaxRulesTemplate.csv" download>TaxRuleImport</a> - refers to a batch type used to upload all relevant information for multiple tax rules at once. </li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a> - refers to a batch type used for uploading multiple transaction lines at once. </li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportBulkUPCTemplate.csv" download>UPCBulkImport</a> - refers to a batch type used for uploading multiple UPC codes and their respective tax codes at once.</li>
 </ul>
 
 <h3>Sample File</h3>
-
-<Took out some of what Ted had in there because in this design template would be linked here>
-
+As an example let's upload some transaction lines, to get satarted quickly download the TransactionImport template and enter in the following data.  
 <h3>List of Required Fields</h3>
-In the following example the [transaction import template](Link Template)  
-The following fields correspond to the same fields in the CreateTransactionModel and are supported in batch files.  You must fill in, at a minimum, these fields:
+
+The following column fields correspond to the same fields in the CreateTransactionModel and are supported in batch files.  You must fill in, at a minimum, data for these columns in the batch file:
 
 <table class="styled-table">
     <tr>
