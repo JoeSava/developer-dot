@@ -28,13 +28,13 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
 
     <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportCompanyLocationsTemplate.csv" download>CompanyLocationImport</a> - refers to a batch type used to upload multiple company locations at once.</li>
 
-    <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportExemptionCertificatesTemplate.csv" download>ExemptCertImport</a> - refers to a batch type used to upload all relevant data for multiple exemption certificates at once. </li>
+    <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportExemptionCertificatesTemplate.csv" download>ExemptCertImport</a> - refers to a batch type used to upload all relevant data for multiple exemption certificates at once.</li>
 
     <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportTaxRulesTemplate.csv" download>TaxRuleImport</a> - refers to a batch type used to upload all relevant information for multiple tax rules at once.</li>
 
-    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a> - refers to a batch type used for uploading multiple transaction lines at once. </li>
+    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a> - refers to a batch type used for uploading multiple transaction lines at once.</li>
 
-    <li> <a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportBulkUPCTemplate.csv" download>UPCBulkImport</a> - refers to a batch type used for uploading multiple UPC codes and their respective tax codes at once.</li>
+    <li><a href="https://raw.githubusercontent.com/JoeSava/developer-dot/newBatchBranch/_batchtemplates/ImportBulkUPCTemplate.csv" download>UPCBulkImport</a> - refers to a batch type used for uploading multiple UPC codes and their respective tax codes at once.</li>
 </ul>
 
 <h3>Sample File</h3>
