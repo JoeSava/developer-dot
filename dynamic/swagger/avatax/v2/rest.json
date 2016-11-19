@@ -764,7 +764,7 @@
 		"/api/v2/batches": {
 			"get": {
 				"tags": ["Batches"],
-				"summary": "Retrieve all batches",
+				"summary": "Retrieve all batch type templates now",
 				"operationId": "ApiV2BatchesGet",
 				"consumes": [],
 				"produces": [],
