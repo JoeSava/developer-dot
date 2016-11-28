@@ -9,7 +9,7 @@ product: blog
 doctype: blog
 disqus: 1
 imgsrc: /public/images/blog/DevDot_ResetLisenceKey.png
-imgsrc: /public/images/blog/DevDot_AccountNumber.png
+imgsrc: /public/images/blog/DevDot_AccountNumber2.png
 ---
 
 # Using The REST API To Build a Connector
@@ -49,10 +49,10 @@ seen in this screenshot:
 
 <img src="/public/images/blog/DevDot_ResetLisenceKey.png" alt="Admin console View" />
 
-We will also need Account Number, which is located on top right corner
+We will also need Account Number, which for privacy purposes is blacked out, but is located on top right corner
 of the application:
 
-![](media/image2.tiff){width="2.1944444444444446in" height="1.5in"}
+<img src="/public/images/blog/DevDot_AccountNumber2.png" alt="Account Number View" />
 
 We will put our account ID and license key in a configuration file and
 retrieve them using C\#’s ConfigurationManager class:
