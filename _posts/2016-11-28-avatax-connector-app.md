@@ -8,7 +8,7 @@ categories: [Sales Tax APIs]
 product: blog
 doctype: blog
 disqus: 1
-imgsrc: /public/images/blog/
+imgsrc: /public/images/blog/DevDot_ResetLisenceKey.png
 ---
 
 # Using The REST API To Build a Connector
@@ -46,7 +46,7 @@ website](https://admin-avatax.avalara.net/login.aspx?ReturnUrl=%2f) as
 seen in this screenshot:
 
 
-<img src="/public/images/blog/DevDot_ResetLisenceKey.jpg" alt="Admin console View" width="500" height="489" />
+<img src="/public/images/blog/DevDot_ResetLisenceKey.png" alt="Admin console View" width="500" height="489" />
 
 We will also need Account Number, which is located on top right corner
 of the application:
