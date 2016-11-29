@@ -8,8 +8,8 @@ categories: [Sales Tax APIs]
 product: blog
 doctype: blog
 disqus: 1
-imgsrc: /public/images/blog/DevDot_ResetLisenceKey.png
 imgsrc: /public/images/blog/DevDot_AccountNumber2.png
+imgsrc: /public/images/blog/DevDot_ResetLisenceKey.png
 ---
 
 # Using The REST API To Build a Connector
@@ -55,28 +55,26 @@ of the application:
 <img src="/public/images/blog/DevDot_AccountNumber2.png" alt="Account Number View" />
 
 We will put our account ID and license key in a configuration file and
-retrieve them using C\#’s ConfigurationManager class:
+retrieve them using `C#` ConfigurationManager class:
 
-#### Basic Authentication C\# Collapse source
+#### Basic Authentication `C#`
 
 ```c#
-  1   private static HttpBasicAuthenticator GetAuthentication()
+private static HttpBasicAuthenticator GetAuthentication()
+            {
 
-  2          {
+                string AccountNumber = ConfigurationManager.AppSettings\["AccountNumber"\];
 
-  3              string AccountNumber = ConfigurationManager.AppSettings\["AccountNumber"\];
+                string APIKey = ConfigurationManager.AppSettings\["APIKey"\];
 
-  4              string APIKey = ConfigurationManager.AppSettings\["APIKey"\];
+                if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
 
-  5              if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
+                    return null;
 
-  6                  return null;
+                HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
 
-  7              HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
-
-  8                  return a;
-
-  9          }
+                    return a;
+            }          
 ```
 Now that we have the ability to get our authentication from the
 configuration file, let’s write some very small helper functions to
