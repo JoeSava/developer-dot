@@ -145,55 +145,50 @@ call it and it will fix up my address for me.
 
 #### Address Validation Post
 
-<Not Sure How To Format Unless I Get Some Raw Code>
 ```c#
+
 /// &lt;summary&gt;
 
-  2            /// Validate address using AvaTax Engine
+// Validate address using AvaTax Engine
 
-  3            /// &lt;/summary&gt;
+/// &lt;/summary&gt;
 
-  4            /// &lt;param name="a"&gt;Address&lt;/param&gt;
+/// &lt;param name="a"&gt;Address&lt;/param&gt;
 
-  5    private void ValidateAddress(ref AddressModel a)
+private void ValidateAddress(ref AddressModel a)
 
-  6          {
+  {
 
-  7              string urlSegment = "addresses/resolve";
+    string urlSegment = "addresses/resolve";
 
-  8              string data = JsonConvert.SerializeObject(a, Formatting.None);
+    string data = JsonConvert.SerializeObject(a, Formatting.None);
 
-  9              string response = HttpUtil.Post(data, urlSegment);
+    string response = HttpUtil.Post(data, urlSegment);
 
-  10              
+    if(response.Contains("error"))
 
-  11             if(response.Contains("error"))
+      {
+        return;
+      }
 
-  12             {
+      JToken j = JObject.Parse(response).SelectToken("validatedAddresses");
 
-  13                 return;
+      if (j != null)
 
-  14             }
+        {
 
-  15             JToken j = JObject.Parse(response).SelectToken("validatedAddresses");
+          if (j.Type == JTokenType.Array && j.HasValues)
 
-  16             if (j != null)
+            {
 
-  17             {
+              response = j.First.ToString();
 
-  18                 if (j.Type == JTokenType.Array && j.HasValues)
+            }
 
-  19                 {
+        }
 
-  20                     response = j.First.ToString();
-
-                     }
-
-                 }
-
-                 a = JsonConvert.DeserializeObject&lt;AddressModel&gt;(response);
-
-             }
+        a = JsonConvert.DeserializeObject&lt;AddressModel&gt;(response);
+      }
 ```
 
 ## Calculate Tax on an Invoice
@@ -249,7 +244,6 @@ public class InvoiceModel
 #### AddressModel
 
 ```c#
-
 public class Addresses
 
   {
@@ -312,29 +306,27 @@ public class AddressModel
 #### ItemsModel
 
 ```c#
-  1    public class Items
+public class Items
 
-  2     {
+  {
 
-  3         public int Number { get; set; }
+    public int Number { get; set; }
 
-  4         public double Rate { get; set; }
+    public double Rate { get; set; }
 
-  5         public string Description { get; set; }
+    public string Description { get; set; }
 
-  6         public double Quantity { get; set; }
+    public double Quantity { get; set; }
 
-  7         public double Discount { get; set; }
+    public double Discount { get; set; }
 
-  8         public double Amount { get; set; }   
+    public double Amount { get; set; }
 
-  9     
+    //response
 
-  10        //response
+    public double Tax { get; set; }
 
-  11        public double Tax { get; set; }        
-
-  12    }
+  }
 ```
 
 Now that we have defined our models, all that remains is to fill-in the data and post the query to AvaTax. For my project today, I will limit my tax calculations to one line item per invoice; but you can easily change this by adding values to the array.
