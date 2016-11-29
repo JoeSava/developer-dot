@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Avatax Connector App
-date: 2016-11-22 11:00
+date: 2016-11-29 11:00
 author: Anagha Sulakhe
 comments: true
 categories: [Sales Tax APIs]
@@ -18,7 +18,7 @@ Avalara’s new [REST API
 v2 ](https://sandbox-rest.avatax.com/swagger/ui/index.html)now offers a
 wide variety of functionality for integrating ERP systems with AvaTax.
 In the new REST API, you can now add companies, estimate tax on the fly,
-validate address, and more! For today’s article, we will focus on
+validate addresses, and more! For today’s article, we will focus on
 building a web application to showcase how to use the new REST API to
 build a connector.
 
@@ -49,7 +49,7 @@ seen in this screenshot:
 
 <img src="/public/images/blog/DevDot_ResetLisenceKey.png" alt="Admin console View" />
 
-We will also need Account Number, which for privacy purposes is blacked out, but is located on top right corner
+We will also need Account Number, which for privacy purposes is blacked out, but is located on the top right corner
 of the application:
 
 <img src="/public/images/blog/DevDot_AccountNumber2.png" alt="Account Number View" />
@@ -72,67 +72,60 @@ private static HttpBasicAuthenticator GetAuthentication()
 
       HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
 
-        return a;
+      return a;
    }          
 ```
 Now that we have the ability to get our authentication from the
 configuration file, let’s write some very small helper functions to
 perform GET and POST API calls using this authentication.
 
-#### RestSharp Get call Collapse source
-
-  ```c#
-  1    public static string Get(string urlSegment)
-
-  2           {
-
-  3               var client = new RestClient(requestUri);           
-
-  4               client.Authenticator = GetAuthentication();
-
-  5               var request = new RestRequest(urlSegment, Method.GET);
-
-  6               request.AddHeader("X-Avalara-Client", "Connector Test Harness");
-
-  7               IRestResponse response = client.Execute(request);
-
-  8               var content = response.Content;
-
-  9               return content;
-
-  10          }
-```
-
-#### RestSharp Post call Collapse source
+#### RestSharp Get call
 
 ```c#
-  1    public static string Post(string postData, string urlSegment)
+public static string Get(string urlSegment)
+  {
+      var client = new RestClient(requestUri);
 
-  2           {
+      client.Authenticator = GetAuthentication();
 
-  3               var client = new RestClient(requestUri);
+      var request = new RestRequest(urlSegment, Method.GET);
 
-  4               client.Authenticator = GetAuthentication();
+      request.AddHeader("X-Avalara-Client", "Connector Test Harness");
 
-  5                
+      IRestResponse response = client.Execute(request);
 
-  6               var request = new RestRequest(urlSegment, Method.POST);
+      var content = response.Content;
 
-  7               request.AddHeader("Content-type", "application/json");
+      return content;
+    }
+```
 
-  8               request.RequestFormat = DataFormat.Json;
+#### RestSharp Post call
 
-  9               request.AddParameter("application/json", postData, ParameterType.RequestBody);
+```c#
+public static string Post(string postData, string urlSegment)
+  {
+    var client = new RestClient(requestUri);
 
-  10              request.AddHeader("X-Avalara-Client", "Connector Test Harness");
+    client.Authenticator = GetAuthentication();
 
-  11              IRestResponse response = client.Execute(request);
+    var request = new RestRequest(urlSegment, Method.POST);
 
-  12              var content = response.Content;
+    request.AddHeader("Content-type", "application/json")
 
-  13              return content;
+    request.RequestFormat = DataFormat.Json;
 
-  14          }
+    request.AddParameter("application/json", postData, ParameterType.RequestBody);
+
+    request.AddHeader("X-Avalara-Client", "Connector Test Harness");
+
+    IRestResponse response = client.Execute(request);
+
+    var content = response.Content;
+
+    return content;
+
+  }
 ```
 
 ## Address Validation
@@ -150,10 +143,11 @@ mistake in the address can easily result in incorrect tax calculation.
 I’ve written this function using a ‘ref’ parameter so that I can simply
 call it and it will fix up my address for me.
 
-#### Address Validation Post Collapse source
+#### Address Validation Post
 
+<Not Sure How To Format Unless I Get Some Raw Code>
 ```c#
-  1     /// &lt;summary&gt;
+/// &lt;summary&gt;
 
   2            /// Validate address using AvaTax Engine
 
@@ -208,144 +202,116 @@ Using the same credentials now we can send tax calculation parameters.
 I've created a class, called InvoiceModel, to replicate the object I'd
 like to post. Here’s what it looks like:
 
-#### InvoiceModel Collapse source
-```c#
-  1    public class InvoiceModel
-
-  2     {
-
-  3         public string CustomerAccountNumber { get; set; }
-
-  4         public DateTime Date { get; set; }
-
-  5     
-
-  6         public Addresses Addresses { get; set; }
-
-  7          
-
-  8         \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  9         public AddressModel PointOfOrderAcceptance { get; set; }
-
-  10        public Items\[\] Lines { get; set; }
-
-  11         
-
-  12        \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  13        public TaxDetails TaxItems { get; set;}
-
-  14         
-
-  15        \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  16        public double TotalTax { get; set; }
-
-  17        public double SubTotal { get; set; }
-
-  18        public double Total { get; set; }
-
-  19    
-
-  20        //some AvaTax related parameters
-
-  21        public string Code { get; set; } //TransactionCode
-
-  22        public string CompanyCode { get; set; }
-
-  23        public string Type { get; set; }
-
-  24        public string CustomerCode { get; set; }        
-
-  25    }
-```
-
-#### AddressModel Collapse source
+#### InvoiceModel
 
 ```c#
-  1    public class Addresses
+public class InvoiceModel
 
-  2    {
+  {
 
-  3        public AddressModel ShipFrom;
+    public string CustomerAccountNumber { get; set; }
 
-  4        public AddressModel ShipTo;
+    public DateTime Date { get; set; }
 
-  5        \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+    public Addresses Addresses { get; set; }
 
-  6        public AddressModel PointOfOrderOrigin;
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
 
-  7        \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+    public AddressModel PointOfOrderAcceptance { get; set; }
 
-  8        public AddressModel PointOfOrderAcceptance;
+    public Items\[\] Lines { get; set; }
 
-  9    }
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
 
-  10    
+    public TaxDetails TaxItems { get; set;}
 
-  11   public class AddressModel
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
 
-  12   {
+    public double TotalTax { get; set; }
 
-  13       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+    public double SubTotal { get; set; }
 
-  14       public string Line1 {get; set;}
+    public double Total { get; set; }
 
-  15    
+    //some AvaTax related parameters
 
-  16       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+    public string Code { get; set; } //TransactionCode
 
-  17       public string Line2 { get; set; }
+    public string CompanyCode { get; set; }
 
-  18    
+    public string Type { get; set; }
 
-  19       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+    public string CustomerCode { get; set; }
 
-  20       public string Line3 { get; set; }
-
-  21    
-
-  22       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  23       public string City { get; set; }
-
-  24    
-
-  25       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  26       public string Region { get; set; }
-
-  27    
-
-  28       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  29       public string PostalCode { get; set; }
-
-  30    
-
-  31       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  32       public string Country { get; set; }
-
-  33    
-
-  34       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  35       public string Latitude { get; set; }
-
-  36    
-
-  37       \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
-
-  38       public string Longitude { get; set; }
-
-  39   }
+  }
 ```
 
-#### ItemsModel Collapse source
+#### AddressModel
 
-  ```c#
+```c#
+
+public class Addresses
+
+  {
+
+    public AddressModel ShipFrom;
+
+    public AddressModel ShipTo;
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public AddressModel PointOfOrderOrigin;
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public AddressModel PointOfOrderAcceptance;
+  }
+
+public class AddressModel
+
+  {
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Line1 {get; set;}
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Line2 { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Line3 { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string City { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Region { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string PostalCode { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Country { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Latitude { get; set; }
+
+    \[JsonProperty(NullValueHandling = NullValueHandling.Ignore)\]
+
+    public string Longitude { get; set; }
+  }
+```
+
+#### ItemsModel
+
+```c#
   1    public class Items
 
   2     {
@@ -373,107 +339,88 @@ like to post. Here’s what it looks like:
 
 Now that we have defined our models, all that remains is to fill-in the data and post the query to AvaTax. For my project today, I will limit my tax calculations to one line item per invoice; but you can easily change this by adding values to the array.
 
-#### InvoiceController Collapse source
+#### InvoiceController
+
 ```c#
-  1    public ActionResult Index(string txtShipFrom, string txtShipTo, InvoiceModel i)
+public ActionResult Index(string txtShipFrom, string txtShipTo, InvoiceModel i)
 
-  2         {
+  {
+    if (!string.IsNullOrEmpty(txtShipFrom) && !string.IsNullOrEmpty(txtShipTo))
+      {
+        //Validate addresses
 
-  3     
+        i.Addresses = new Addresses();
 
-  4             if (!string.IsNullOrEmpty(txtShipFrom) && !string.IsNullOrEmpty(txtShipTo))
+        i.Addresses.ShipFrom = getAddressFormat(txtShipFrom);
 
-  5             {
+        ValidateAddress(ref i.Addresses.ShipFrom);
 
-  6      //Validate addresses
+        i.Addresses.ShipTo = getAddressFormat(txtShipTo);
 
-  7                 i.Addresses = new Addresses();
+        ValidateAddress(ref i.Addresses.ShipTo);
 
-  8                 i.Addresses.ShipFrom = getAddressFormat(txtShipFrom);              
+        i.SubTotal = i.Lines\[0\].Amount;
 
-  9                 ValidateAddress(ref i.Addresses.ShipFrom);
+        //Set Invoice object fields. Note – CompanyCode need to match with CompanyCode in AvaTax application.
 
-  10    
+        string urlSegment = "transactions/create";
 
-  11                i.Addresses.ShipTo = getAddressFormat(txtShipTo);
+        i.CustomerCode = "onlineCustomer";
 
-  12                ValidateAddress(ref i.Addresses.ShipTo);
+        i.CompanyCode = "ABC123";
 
-  13                i.SubTotal = i.Lines\[0\].Amount;
+        i.Date = DateTime.Now;
 
-  14                 
+        i.CustomerAccountNumber = "0001";
 
-  15   //Set Invoice object fields. Note – CompanyCode need to match with CompanyCode in AvaTax application.
+        i.Code = "1234";
 
-  16                string urlSegment = "transactions/create";
+        i.Type = "SalesInvoice";
 
-  17                i.CustomerCode = "onlineCustomer";
+        i.Lines\[0\].Number = 1;
 
-  18                i.CompanyCode = "ABC123";
+        //Post Json format data
 
-  19                i.Date = DateTime.Now;
+        string data = JsonConvert.SerializeObject(i, Formatting.None);
 
-  20                i.CustomerAccountNumber = "0001";
+        string s = HttpUtil.Post(data, urlSegment);
 
-  21                i.Code = "1234";
+        //Parse response and return values accordingly
 
-  22                i.Type = "SalesInvoice";
+        if(s.Contains("error"))
 
-  23                i.Lines\[0\].Number = 1;
+          {
 
-  24    
+            ViewBag.Message = s.ToString();
 
-  25   //Post Json format data
+            return View();
+          }
 
-  26   string data = JsonConvert.SerializeObject(i, Formatting.None);
+          JObject o = JObject.Parse(s);
 
-  27     string s = HttpUtil.Post(data, urlSegment);
+          JObject tax = (JObject)o\["summary"\]\[0\];
 
-  28   //Parse response and return values accordingly
+          i.Lines\[0\].Tax = (double)tax\["tax"\];
 
-  29                if(s.Contains("error"))
+          i.Total = i.Lines\[0\].Tax + i.SubTotal;
 
-  30                {
+          return View(i);
 
-  31                    ViewBag.Message = s.ToString();
+        }
 
-  32                    return View();
+      else
 
-  33                }
+      //Pre-set some sample data
 
-  34                
+      ViewBag.ShipFrom = "1500 109th Ave NE, Blaine, MN, US";
 
-  35                JObject o = JObject.Parse(s);
+      ViewBag.ShipTo = "1100 2nd Ave \#300, Seattle, WA, US";
 
-  36                JObject tax = (JObject)o\["summary"\]\[0\];
+      ViewBag.OrderOrigin = "2511 Laguna Blvd, Elk Grove, CA, US, 95758";
 
-  37                
-
-  38                i.Lines\[0\].Tax = (double)tax\["tax"\];
-
-  39                i.Total = i.Lines\[0\].Tax + i.SubTotal;
-
-  40                return View(i);
-
-  41            }
-
-  42            else
-
-  43            {
-
-  44   //Pre-set some sample data
-
-  45   ViewBag.ShipFrom = "1500 109th Ave NE, Blaine, MN, US";
-
-  46   ViewBag.ShipTo = "1100 2nd Ave \#300, Seattle, WA, US";
-
-  47   ViewBag.OrderOrigin = "2511 Laguna Blvd, Elk Grove, CA,  
-
-  48   US, 95758";
-
-  49   ViewBag.OrderAcceptance = "100 Market Street, San
-
-  50   Francisco, CA, US";         } 
+      ViewBag.OrderAcceptance = "100 Market Street, San Francisco, CA, US";
+    } 
 ```
 
-Now that you’ve seen the key parts of my software, you can download the full library by visiting GitHub here. (LINK TBD)
+Now that you’ve seen the key parts of my software, you can download the full library by visiting GitHub here:
+<Need To Ask Ted About this Link> (LINK TBD).
