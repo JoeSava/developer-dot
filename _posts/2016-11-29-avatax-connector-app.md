@@ -61,20 +61,19 @@ retrieve them using `C#` ConfigurationManager class:
 
 ```c#
 private static HttpBasicAuthenticator GetAuthentication()
-            {
+  {
+      string AccountNumber = ConfigurationManager.AppSettings\["AccountNumber"\];
 
-                string AccountNumber = ConfigurationManager.AppSettings\["AccountNumber"\];
+      string APIKey = ConfigurationManager.AppSettings\["APIKey"\];
 
-                string APIKey = ConfigurationManager.AppSettings\["APIKey"\];
+      if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
 
-                if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
+        return null;
 
-                    return null;
+      HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
 
-                HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
-
-                    return a;
-            }          
+        return a;
+   }          
 ```
 Now that we have the ability to get our authentication from the
 configuration file, let’s write some very small helper functions to
