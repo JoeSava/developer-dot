@@ -188,7 +188,7 @@ private void ValidateAddress(ref AddressModel a)
         }
 
         a = JsonConvert.DeserializeObject&lt;AddressModel&gt;(response);
-      }
+    }
 ```
 
 ## Calculate Tax on an Invoice
