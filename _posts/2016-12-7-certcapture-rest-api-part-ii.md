@@ -29,19 +29,19 @@ Today I would like to demonstrate how with one POST call to the CertCapture REST
 
 Certificate:
 
-<img src="/public/images/blog/DevDot_DocResult.png" alt="Document Result for Certificate" height="350" width = "487" />
+<img src="/public/images/blog/DevDot_DocResult.png" alt="Document Result for Certificate" height="450" width = "600" />
 
 ### Validation List:
 
-<img src="/public/images/blog/DevDot_ValidationList.png" alt="Validation List" height="30" width = "487"/>
+<img src="/public/images/blog/DevDot_ValidationList.png" alt="Validation List" height="30" width = "600"/>
 
 ### Customer:
 
-<img src="/public/images/blog/DevDot_ResetLisenceKey.png" alt="Admin console View" height="250" width = "487" />
+<img src="/public/images/blog/DevDot_ResetLisenceKey.png" alt="Admin console View" height="450" width = "600" />
 
 ### Validation Screen:
 
-<img src="/public/images/blog/DevDot_ValidationScreenWithMario.png" alt="Mario Being Validated" height="300" width = "487" />
+<img src="/public/images/blog/DevDot_ValidationScreenWithMario.png" alt="Mario Being Validated" height="450" width = "600" />
 
 ### The breakdown
 
