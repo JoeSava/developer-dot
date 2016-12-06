@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Avatax Connector App
-date: 2016-12-05 10:00
+date: 2016-12-05 1:00
 author: Anagha Sulakhe
 comments: true
 categories: [Sales Tax APIs]
@@ -60,20 +60,15 @@ retrieve them using `C#` ConfigurationManager class:
 #### Basic Authentication `C#`
 
 ```c#
-private static HttpBasicAuthenticator GetAuthentication()
-  {
-      string AccountNumber = ConfigurationManager.AppSettings\["AccountNumber"\];
-
-      string APIKey = ConfigurationManager.AppSettings\["APIKey"\];
-
-      if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
-
-        return null;
-
-      HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
-
-      return a;
-   }          
+private static HttpBasicAuthenticator GetAuthentication()
+{
+    string AccountNumber = ConfigurationManager.AppSettings["AccountNumber"];
+    string APIKey = ConfigurationManager.AppSettings["APIKey"];
+    if (string.IsNullOrEmpty(AccountNumber) || string.IsNullOrEmpty(APIKey))
+        return null;
+    HttpBasicAuthenticator a = new HttpBasicAuthenticator(AccountNumber,APIKey);
+        return a;
+}         
 ```
 Now that we have the ability to get our authentication from the
 configuration file, let’s write some very small helper functions to
