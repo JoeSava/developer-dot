@@ -1,14 +1,13 @@
 ---
 layout: post
 title: Avatax Connector App
-date: 2016-12-05 1:00
+date: 2016-12-05 10:00
 author: Anagha Sulakhe
 comments: true
 categories: [Sales Tax APIs]
 product: blog
 doctype: blog
 disqus: 1
-imgsrc: /public/images/blog/DevDot_AccountNumber2.png
 imgsrc: /public/images/blog/DevDot_ResetLisenceKey.png
 ---
 
