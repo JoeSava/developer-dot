@@ -20,8 +20,6 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
     <li>Batch files are processed by AvaTax in the order they were received.</li>
 </ul>
 
-<<<<<<< HEAD
-
 <h3>Batch File Types</h3>
 <i> Download CSV Batch Templates Here (Many of these are also available in the Admin Console):</i>
 <ul class="normal">
@@ -41,7 +39,7 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/master/_batchtemplates/ImportTaxRulesTemplate.csv" download>TaxRuleImport</a> - refers to a batch type used to upload all relevant information for multiple tax rules at once.</li>
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a> - refers to a batch type used for uploading multiple transaction lines at once.</li>
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/master/_batchtemplates/ImportBulkUPCTemplate.csv" download>UPCBulkImport</a> - refers to a batch type used for uploading multiple UPC codes and their respective tax codes at once.</li>
->>>>>>> 2e1d592ceb91783423aea99eb9455f5a4d31afa8
+
 </ul>
 
 <h3>Sample File</h3>
