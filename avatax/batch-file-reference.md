@@ -29,7 +29,7 @@ To learn how to use batch files, visit this page: <a href="http://developer.aval
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/newBatchBranch/_batchtemplates/ImportTaxRulesTemplate.csv" download>TaxRuleImport</a> - refers to a batch type used to upload all relevant information for multiple tax rules at once.</li>
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/master/_batchtemplates/ImportTransactionsTemplate.csv" download>TransactionImport</a> - refers to a batch type used for uploading multiple transaction lines at once.</li>
     <li><a href="https://raw.githubusercontent.com/Avalara/developer-dot/newBatchBranch/_batchtemplates/ImportBulkUPCTemplate.csv" download>UPCBulkImport</a> - refers to a batch type used for uploading multiple UPC codes and their respective tax codes at once.</li>
-=======
+
 <h3>These are the REST v2 supported Batch File Types</h3>
 <i> Download CSV Batch Templates Here (Many of these are also available in the Admin Console):</i>
 <ul class="normal">
